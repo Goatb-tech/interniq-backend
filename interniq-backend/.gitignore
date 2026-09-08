@@ -1,0 +1,14 @@
+__pycache__/
+*.py[cod]
+*.egg-info/
+.env
+venv/
+.venv/
+*.db
+uploads/*
+!uploads/.gitkeep
+alembic/versions/*.pyc
+.DS_Store
+dist/
+build/
+*.egg
