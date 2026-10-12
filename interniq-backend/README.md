@@ -107,7 +107,7 @@ Server runs at `http://localhost:8000`.
 | Variable | Description | Default |
 |----------|-------------|---------|
 | `DATABASE_URL` | Async PostgreSQL connection string | `postgresql+asyncpg://postgres:postgres@localhost:5432/interniq` |
-| `SECRET_KEY` | JWT signing secret | `change-me-in-production` |
+| `SECRET_KEY` | JWT signing secret | Required random secret; no default |
 | `ACCESS_TOKEN_EXPIRE_MINUTES` | Access token TTL | `30` |
 | `REFRESH_TOKEN_EXPIRE_DAYS` | Refresh token TTL | `7` |
 | `MAX_UPLOAD_SIZE` | Max resume file size (bytes) | `10485760` |
@@ -129,3 +129,8 @@ alembic downgrade -1
 ## License
 
 MIT
+
+
+## Required security configuration
+
+Generate fresh credentials locally (for example, `python3 -c "import secrets; print(secrets.token_urlsafe(48))"`). Never commit the resulting values. InternIQ requires SECRET_KEY and a strong database password. Use a URL-safe password in database connection URLs. Services reject missing security configuration. Use HTTPS for any access beyond localhost. Rotate any previously deployed default credentials and rebuild/redeploy after applying these changes.
